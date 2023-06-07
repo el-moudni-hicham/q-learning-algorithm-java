@@ -50,12 +50,13 @@ A key challenge in reinforcement learning is balancing exploration and exploitat
 
 ```
 D:.
+│
 └───src
     └───ma
         └───enset
             └───qlearning
                 ├───gui
-                │       QLearningAgentGUI.java
+                │       QLAppGUI.java
                 │
                 ├───sequential
                 │       QLearning.java
@@ -63,11 +64,19 @@ D:.
                 │
                 └───sma
                     ├───agents
+                    │       CentralAgent.java
                     │       QLearningAgent.java
                     │
-                    └───containers
-                            MainContainer.java
-                            SimpleContainer.java
+                    ├───containers
+                    │       CentralContainer.java
+                    │       MainContainer.java
+                    │       SimpleContainer.java
+                    │
+                    ├───entites
+                    │       QLEntity.java
+                    │
+                    └───helpers
+                            QLUtils.java
 ```
 
 Here's a simple Java implementation of the Q-Learning algorithm:
@@ -126,7 +135,7 @@ the random number is less than the exploration rate. If it is, it selects a rand
 it selects the action with the highest expected reward in the current state.
 
 ```java
-    private int chooseAction(double eps){
+private int chooseAction(double eps){
         Random random = new Random();
         double bestQ = 0;
         int act = 0;
@@ -144,7 +153,7 @@ it selects the action with the highest expected reward in the current state.
             }
         }
         return act;
-    }
+}
 ```
 
 `executeAction(int act)` : This method updates the agent's position based on the action it takes.
@@ -155,11 +164,11 @@ of the new state in the Q-table using the formula `stateI*GRID_SIZE + stateJ` .
 
 
 ```java
-    private int executeAction(int act){
+private int executeAction(int act){
         stateI = Math.max(0, Math.min(actions[act][0]+stateI, GRID_SIZE-1));
         stateJ = Math.max(0, Math.min(actions[act][1]+stateJ, GRID_SIZE-1));
         return stateI*GRID_SIZE + stateJ;
-    }
+}
 ```
 
 `run()` : This is the main method of the QLearning class. It runs the Q-learning algorithm until the maximum 
@@ -170,7 +179,7 @@ method, and updates the Q-table using the Bellman equation. Finally, it calls th
 the Q-table and the path the agent took to reach the goal state.
 
 ```java
-    public void run(){
+public void run(){
         int it = 0;
 
         int currentState;
@@ -195,12 +204,12 @@ the Q-table and the path the agent took to reach the goal state.
              it++;
         }
         showResult();
-    }
+}
 ```
 
 `showResult()` : This method show Q Table and Road to target
 ```java
-    private void showResult(){
+private void showResult(){
         System.out.println("---------------- Q Table ----------------");
         for (double[] line:qTable) {
             System.out.println(Arrays.toString(line));
@@ -217,15 +226,15 @@ the Q-table and the path the agent took to reach the goal state.
         }
 
         System.out.println("final state : " + (stateI * GRID_SIZE + stateJ));
-    }
+}
 ```
 `finished()` : This method checks if the agent has reached the goal state. It returns true if the value of 
 the current state in the grid array is 1, indicating that the agent has reached the goal state.
 
 ```java
-    private boolean finished(){
+private boolean finished(){
         return grid[stateI][stateJ] == 1;
-    }
+}
 ```
 
 
@@ -235,7 +244,7 @@ It takes an integer argument that represents the index of the action in the acti
 a string that corresponds to the direction of the action.
 
 ```java
-   private String derections(int i){
+private String derections(int i){
         switch (i){
            case 0 : return "LEFT";
            case 1 : return "RIGHT";
@@ -243,17 +252,17 @@ a string that corresponds to the direction of the action.
            case 3 : return "TOP";
            default: return " ";
         }
-   }
+}
 ```
 
 
 `resetState()` : This method sets the agent's position to the starting position. It sets the values of the 
 stateI and stateJ variables to 0.
 ```java
-   private void resetState(){
+private void resetState(){
         stateI = 0;
         stateJ = 0;
-   }
+}
 ```
 ### Sequential Version
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sequential)
@@ -272,6 +281,11 @@ stateI and stateJ variables to 0.
 
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sma)
 
+### Principe :
+
+![Untitled Diagram drawio](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/1939755d-62c6-40c0-bd03-a740105c089e)
+
+
 This class to create 5 agents to find the target :
 
 ```java
@@ -288,19 +302,28 @@ public class SimpleContainer {
             mainAgent.start();
             sleep(3000);
         }
-
-
     }
 }
 ```
-
+ - Jade Interface :
+ 
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/276f8443-0c1f-4d16-a2d1-3ede3c6b322b)
 
-![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/96325512-87f8-45f1-bfcb-534df3360300)
+ - QLAgent Side :
+
+![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/387ae84d-7cff-4d2f-936d-08e67c19b5c6)
+
+ - CentralAgent Side :
+  
+ ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/c34b1620-6497-45ff-b0e0-a40c16241361)
+
 
 ### JavaFX Version
+
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/gui)
+
   - GUI :
+  
 The blue color is the tarjectory to the target 
 
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/941a04b3-f8b0-4fbe-9e56-29577345d12e)
