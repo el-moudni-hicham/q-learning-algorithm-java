@@ -305,6 +305,8 @@ public class SimpleContainer {
 }
 ```
 
+![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/276f8443-0c1f-4d16-a2d1-3ede3c6b322b)
+
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/96325512-87f8-45f1-bfcb-534df3360300)
 
 ### JavaFX
