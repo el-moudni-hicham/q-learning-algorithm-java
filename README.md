@@ -159,8 +159,11 @@ the Q-table and the path the agent took to reach the goal state.
                 int nextBestAct = chooseAction(0);
 
                 // Bellman equation
-                qTable[currentState][act] = qTable[currentState][act] + ALPHA * (grid[stateI][stateJ]
-                                          + GAMMA * qTable[nextState][nextBestAct] - qTable[currentState][act]);
+                qTable[currentState][act] =   qTable[currentState][act] + ALPHA * (
+                                                grid[stateI][stateJ]
+                                              + GAMMA * qTable[nextState][nextBestAct] 
+                                              - qTable[currentState][act]
+                                            );
 
                 it++;
             }
