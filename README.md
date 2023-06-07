@@ -191,9 +191,8 @@ the Q-table and the path the agent took to reach the goal state.
                                               + GAMMA * qTable[nextState][nextBestAct] 
                                               - qTable[currentState][act]
                                             );
-
-                it++;
             }
+             it++;
         }
         showResult();
     }
@@ -307,6 +306,10 @@ The blue color is the tarjectory to the target
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/941a04b3-f8b0-4fbe-9e56-29577345d12e)
 
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/650d7964-4b41-4fd7-a6a3-1e790036cc69)
+
+  - Video Demonstration 
+    
+https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/891a7554-879b-4795-b5a0-0522de3f4ec8
 
 
 ## Applications
