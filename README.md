@@ -10,8 +10,11 @@ This repository contains a comprehensive report on the Q-Learning algorithm, a p
     - [Bellman equation](#bellman-equation)
 3. [Exploration vs. Exploitation](#exploration-vs-exploitation)
 4. [Java Implementation](#java-implementation)
-5. [Applications](#applications)
-6. [Conclusion](#conclusion)
+    - [Sequential](#sequential)
+    - [Multi Agent System](#multi-agent-system)
+    - [JavaFX](#javafx)
+6. [Applications](#applications)
+7. [Conclusion](#conclusion)
 
 
 ## Introduction
@@ -42,6 +45,30 @@ where:
 A key challenge in reinforcement learning is balancing exploration and exploitation. Exploration involves trying new actions to discover their effects, while exploitation involves choosing the action with the highest estimated Q-value. A common approach to balance exploration and exploitation is using an ε-greedy strategy, where the agent chooses a random action with probability ε and the action with the highest Q-value with probability 1 - ε.
 
 ## Java Implementation
+
+### Project Structure 
+
+```
+D:.
+└───src
+    └───ma
+        └───enset
+            └───qlearning
+                ├───gui
+                │       QLearningAgentGUI.java
+                │
+                ├───sequential
+                │       QLearning.java
+                │       Test.java
+                │
+                └───sma
+                    ├───agents
+                    │       QLearningAgent.java
+                    │
+                    └───containers
+                            MainContainer.java
+                            SimpleContainer.java
+```
 
 Here's a simple Java implementation of the Q-Learning algorithm:
 
@@ -85,7 +112,8 @@ public class QLearning {
         };
     }
     
-}
+    // The rest of methods ...
+} 
 
 ```
 
@@ -158,7 +186,11 @@ the Q-table and the path the agent took to reach the goal state.
                 int nextBestAct = chooseAction(0);
 
                 // Bellman equation
-                qTable[currentState][act] = qTable[currentState][act] + ALPHA * (grid[stateI][stateJ] + GAMMA * qTable[nextState][nextBestAct] - qTable[currentState][act]);
+                qTable[currentState][act] =   qTable[currentState][act] + ALPHA * (
+                                                grid[stateI][stateJ]
+                                              + GAMMA * qTable[nextState][nextBestAct] 
+                                              - qTable[currentState][act]
+                                            );
 
                 it++;
             }
@@ -180,7 +212,8 @@ the Q-table and the path the agent took to reach the goal state.
 
         while (!finished()){
             int act = chooseAction(0);
-            System.out.println("state : " + (stateI * GRID_SIZE + stateJ) + " -> action : " + derections(act) + "("+act+")");
+            System.out.println("state : " + (stateI * GRID_SIZE + stateJ) + " -> action : " 
+                                + derections(act) + "("+act+")");
             executeAction(act);
         }
 
@@ -233,6 +266,48 @@ Q-Learning has been successfully applied to various domains, including:
 3. Resource allocation: Optimizing the allocation of resources in computer networks and manufacturing systems.
 4. Finance: Portfolio management and algorithmic trading.
 
+### Sequential
+> Result 
+
+  - Q Table :
+  
+![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/29b9da3b-d7dd-4c37-ad4f-eb5c88239279)
+
+  - Trajectory :
+  
+![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/482189e8-9dee-4ac5-80e3-7ed386e8e522)
+
+
+### Multi Agent System
+This class to create 5 agents to find the target 
+```
+public class SimpleContainer {
+    public static void main(String[] args) throws StaleProxyException, InterruptedException {
+        Runtime runtime = Runtime.instance();
+        ProfileImpl profile = new ProfileImpl();
+        profile.setParameter(Profile.MAIN_HOST, "localhost");
+        AgentContainer agentContainer = runtime.createAgentContainer(profile);
+
+        for (int i = 0; i < 5; i++) {
+            AgentController mainAgent = agentContainer.createNewAgent(String.valueOf(i), QLearningAgent.class.getName(), new Object[]{});
+            mainAgent.start();
+            sleep(3000);
+        }
+
+
+    }
+}
+```
+
+![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/96325512-87f8-45f1-bfcb-534df3360300)
+
+### JavaFX
+  - GUI :
+The blue color is the tarjectory to the target 
+
+![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/941a04b3-f8b0-4fbe-9e56-29577345d12e)
+
+![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/650d7964-4b41-4fd7-a6a3-1e790036cc69)
 
 ## Recent Advancements
 
