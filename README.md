@@ -159,7 +159,8 @@ the Q-table and the path the agent took to reach the goal state.
                 int nextBestAct = chooseAction(0);
 
                 // Bellman equation
-                qTable[currentState][act] = qTable[currentState][act] + ALPHA * (grid[stateI][stateJ] + GAMMA * qTable[nextState][nextBestAct] - qTable[currentState][act]);
+                qTable[currentState][act] = qTable[currentState][act] + ALPHA * (grid[stateI][stateJ]
+                                          + GAMMA * qTable[nextState][nextBestAct] - qTable[currentState][act]);
 
                 it++;
             }
@@ -181,7 +182,8 @@ the Q-table and the path the agent took to reach the goal state.
 
         while (!finished()){
             int act = chooseAction(0);
-            System.out.println("state : " + (stateI * GRID_SIZE + stateJ) + " -> action : " + derections(act) + "("+act+")");
+            System.out.println("state : " + (stateI * GRID_SIZE + stateJ) + " -> action : " 
+                                + derections(act) + "("+act+")");
             executeAction(act);
         }
 
