@@ -85,7 +85,8 @@ public class QLearning {
         };
     }
     
-}
+    // The rest of methods ...
+} 
 
 ```
 
