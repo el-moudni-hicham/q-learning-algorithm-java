@@ -199,7 +199,7 @@ the Q-table and the path the agent took to reach the goal state.
     }
 ```
 
-`showResult()` :
+`showResult()` : This method show Q Table and Road to target
 ```java
     private void showResult(){
         System.out.println("---------------- Q Table ----------------");
