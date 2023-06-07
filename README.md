@@ -267,6 +267,7 @@ Q-Learning has been successfully applied to various domains, including:
 4. Finance: Portfolio management and algorithmic trading.
 
 ### Sequential
+[link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sequential)
 > Result 
 
   - Q Table :
@@ -279,6 +280,7 @@ Q-Learning has been successfully applied to various domains, including:
 
 
 ### Multi Agent System
+[link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sma)
 This class to create 5 agents to find the target 
 ```
 public class SimpleContainer {
@@ -302,6 +304,7 @@ public class SimpleContainer {
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/96325512-87f8-45f1-bfcb-534df3360300)
 
 ### JavaFX
+[link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/gui)
   - GUI :
 The blue color is the tarjectory to the target 
 
