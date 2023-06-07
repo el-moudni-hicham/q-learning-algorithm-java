@@ -283,8 +283,9 @@ Q-Learning has been successfully applied to various domains, including:
 
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sma)
 
-This class to create 5 agents to find the target 
-```
+This class to create 5 agents to find the target :
+
+```java
 public class SimpleContainer {
     public static void main(String[] args) throws StaleProxyException, InterruptedException {
         Runtime runtime = Runtime.instance();
