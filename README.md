@@ -280,7 +280,9 @@ Q-Learning has been successfully applied to various domains, including:
 
 
 ### Multi Agent System
+
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sma)
+
 This class to create 5 agents to find the target 
 ```
 public class SimpleContainer {
@@ -291,7 +293,8 @@ public class SimpleContainer {
         AgentContainer agentContainer = runtime.createAgentContainer(profile);
 
         for (int i = 0; i < 5; i++) {
-            AgentController mainAgent = agentContainer.createNewAgent(String.valueOf(i), QLearningAgent.class.getName(), new Object[]{});
+            AgentController mainAgent = agentContainer.createNewAgent(String.valueOf(i),
+            QLearningAgent.class.getName(), new Object[]{});
             mainAgent.start();
             sleep(3000);
         }
