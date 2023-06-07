@@ -256,17 +256,7 @@ stateI and stateJ variables to 0.
         stateJ = 0;
    }
 ```
-
-## Applications
-
-Q-Learning has been successfully applied to various domains, including:
-
-1. Robotics: Autonomous navigation and control of robots.
-2. Game playing: Learning optimal strategies for playing games like chess, Go, and poker.
-3. Resource allocation: Optimizing the allocation of resources in computer networks and manufacturing systems.
-4. Finance: Portfolio management and algorithmic trading.
-
-### Sequential
+### Sequential Version
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sequential)
 > Result 
 
@@ -279,7 +269,7 @@ Q-Learning has been successfully applied to various domains, including:
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/482189e8-9dee-4ac5-80e3-7ed386e8e522)
 
 
-### Multi Agent System
+### Multi Agent System Version
 
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/sma)
 
@@ -309,7 +299,7 @@ public class SimpleContainer {
 
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/96325512-87f8-45f1-bfcb-534df3360300)
 
-### JavaFX
+### JavaFX Version
 [link to code](https://github.com/el-moudni-hicham/q-learning-algorithm-java/tree/master/src/ma/enset/qlearning/gui)
   - GUI :
 The blue color is the tarjectory to the target 
@@ -317,6 +307,16 @@ The blue color is the tarjectory to the target
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/941a04b3-f8b0-4fbe-9e56-29577345d12e)
 
 ![image](https://github.com/el-moudni-hicham/q-learning-algorithm-java/assets/85403056/650d7964-4b41-4fd7-a6a3-1e790036cc69)
+
+
+## Applications
+
+Q-Learning has been successfully applied to various domains, including:
+
+1. Robotics: Autonomous navigation and control of robots.
+2. Game playing: Learning optimal strategies for playing games like chess, Go, and poker.
+3. Resource allocation: Optimizing the allocation of resources in computer networks and manufacturing systems.
+4. Finance: Portfolio management and algorithmic trading.
 
 ## Recent Advancements
 
