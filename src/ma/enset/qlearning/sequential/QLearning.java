@@ -9,7 +9,7 @@ public class QLearning {
     private final double ALPHA = 0.1;
     private final double GAMMA = 0.9;
     private final double EPS = 0.4;
-    private final int MAX_EPOCH = 100000;
+    private final int MAX_EPOCH = 200000;
     private final int GRID_SIZE = 6;
     private final int ACTIONS_SIZE = 4;
 
@@ -28,12 +28,12 @@ public class QLearning {
         };
 
         grid = new int[][]{
-                {0,0,0,0,0,-1},
-                {0,-1,0,0,0,0},
-                {-1,-1,0,0,0,0},
-                {0,0,0,0,0,1},
-                {0,0,0,0,0,0},
-                {0,0,0,0,0,-1},
+                { 0 , 0 , 0 , -1 , 0 , 0},
+                {-1 , 0 ,  0 , 0 , -1 , 0},
+                {0  , 0 , -1 , 0 , 0 , -1},
+                {0  , -1 ,  1 , -1 , 0 , 0},
+                {0  , 0 ,  0 , 0 , -1 , 0},
+                {-1  , 0 ,  -1 , 0 , 0 , 0},
         };
     }
 

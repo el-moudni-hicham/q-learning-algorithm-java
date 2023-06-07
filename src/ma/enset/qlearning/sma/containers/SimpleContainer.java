@@ -6,6 +6,7 @@ import jade.core.Runtime;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
+import ma.enset.qlearning.sma.agents.QLearningAgent;
 
 import static java.lang.Thread.sleep;
 
@@ -17,7 +18,7 @@ public class SimpleContainer {
         AgentContainer agentContainer = runtime.createAgentContainer(profile);
 
         for (int i = 0; i < 5; i++) {
-            AgentController mainAgent = agentContainer.createNewAgent(String.valueOf(i), ma.enset.qlearning.sma.agents.QLearningAgentGUI.class.getName(), new Object[]{});
+            AgentController mainAgent = agentContainer.createNewAgent(String.valueOf(i), QLearningAgent.class.getName(), new Object[]{});
             mainAgent.start();
             sleep(3000);
         }
