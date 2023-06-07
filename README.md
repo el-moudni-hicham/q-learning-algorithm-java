@@ -10,9 +10,9 @@ This repository contains a comprehensive report on the Q-Learning algorithm, a p
     - [Bellman equation](#bellman-equation)
 3. [Exploration vs. Exploitation](#exploration-vs-exploitation)
 4. [Java Implementation](#java-implementation)
-    - [Sequential](#sequential)
-    - [Multi Agent System](#multi-agent-system)
-    - [JavaFX](#javafx)
+    - [Sequential Version](#sequential-version)
+    - [Multi Agent System Version](#multi-agent-system-version)
+    - [JavaFX Version](#javafx-version)
 6. [Applications](#applications)
 7. [Conclusion](#conclusion)
 
