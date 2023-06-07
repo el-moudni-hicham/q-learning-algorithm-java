@@ -50,7 +50,6 @@ A key challenge in reinforcement learning is balancing exploration and exploitat
 
 ```
 D:.
-│
 └───src
     └───ma
         └───enset
