@@ -55,10 +55,11 @@ public class QLearning {
                 // Bellman equation
                 qTable[currentState][act] = qTable[currentState][act] + ALPHA * (grid[stateI][stateJ] + GAMMA * qTable[nextState][nextBestAct] - qTable[currentState][act]);
 
-                it++;
             }
+            it++;
         }
         showResult();
+        System.out.println(it);
     }
 
     private void showResult(){

@@ -11,7 +11,7 @@ This repository contains a comprehensive report on the Q-Learning algorithm, a p
 3. [Exploration vs. Exploitation](#exploration-vs-exploitation)
 4. [Java Implementation](#java-implementation)
     - [Sequential](#sequential)
-    - [Multi Agent System](#multi-agent-system)
+    - [Multi Agent System](#multi-QClass-system)
     - [JavaFX](#javafx)
 6. [Applications](#applications)
 7. [Conclusion](#conclusion)
@@ -25,7 +25,7 @@ Q-Learning is a model-free reinforcement learning algorithm that aims to find th
 
 ### Q-Table
 
-The Q-Learning algorithm uses a Q-table to store the estimated values of each state-action pair. The rows in the table represent the different states, while the columns represent the possible actions. The values in the table are updated iteratively as the agent explores the environment and learns from its experiences.
+The Q-Learning algorithm uses a Q-table to store the estimated values of each state-action pair. The rows in the table represent the different states, while the columns represent the possible actions. The values in the table are updated iteratively as the QClass explores the environment and learns from its experiences.
 
 ### Bellman equation
 
@@ -42,7 +42,7 @@ where:
 
 ## Exploration vs. Exploitation
 
-A key challenge in reinforcement learning is balancing exploration and exploitation. Exploration involves trying new actions to discover their effects, while exploitation involves choosing the action with the highest estimated Q-value. A common approach to balance exploration and exploitation is using an ε-greedy strategy, where the agent chooses a random action with probability ε and the action with the highest Q-value with probability 1 - ε.
+A key challenge in reinforcement learning is balancing exploration and exploitation. Exploration involves trying new actions to discover their effects, while exploitation involves choosing the action with the highest estimated Q-value. A common approach to balance exploration and exploitation is using an ε-greedy strategy, where the QClass chooses a random action with probability ε and the action with the highest Q-value with probability 1 - ε.
 
 ## Java Implementation
 
@@ -119,7 +119,7 @@ public class QLearning {
 
 ### Methods Explecation :
 
-`chooseAction(double eps)` : This method selects the next action for the agent to take. It takes a double
+`chooseAction(double eps)` : This method selects the next action for the QClass to take. It takes a double
 argument that represents the exploration rate, and returns an integer that represents the index of the
 action in the actions array. It first generates a random number using the Random class, and checks if
 the random number is less than the exploration rate. If it is, it selects a random action. Otherwise,
@@ -147,7 +147,7 @@ it selects the action with the highest expected reward in the current state.
     }
 ```
 
-`executeAction(int act)` : This method updates the agent's position based on the action it takes.
+`executeAction(int act)` : This method updates the QClass's position based on the action it takes.
 It takes an integer argument that represents the index of the action in the actions array,
 and returns an integer that represents the index of the new state in the Q-table. It updates
 the values of the stateI and stateJ variables based on the action, and then calculates the index
@@ -163,11 +163,11 @@ of the new state in the Q-table using the formula `stateI*GRID_SIZE + stateJ` .
 ```
 
 `run()` : This is the main method of the QLearning class. It runs the Q-learning algorithm until the maximum 
-number of iterations is reached. It calls the resetState() method to set the agent's position to the starting
+number of iterations is reached. It calls the resetState() method to set the QClass's position to the starting
 position, and then enters a loop that continues until the finished() method returns true. In each iteration of 
 the loop, it selects an action using the chooseAction() method, executes the action using the executeAction()
 method, and updates the Q-table using the Bellman equation. Finally, it calls the showResult() method to print
-the Q-table and the path the agent took to reach the goal state.
+the Q-table and the path the QClass took to reach the goal state.
 
 ```java
     public void run(){
@@ -220,8 +220,8 @@ the Q-table and the path the agent took to reach the goal state.
         System.out.println("final state : " + (stateI * GRID_SIZE + stateJ));
     }
 ```
-`finished()` : This method checks if the agent has reached the goal state. It returns true if the value of 
-the current state in the grid array is 1, indicating that the agent has reached the goal state.
+`finished()` : This method checks if the QClass has reached the goal state. It returns true if the value of 
+the current state in the grid array is 1, indicating that the QClass has reached the goal state.
 
 ```java
     private boolean finished(){
@@ -231,7 +231,7 @@ the current state in the grid array is 1, indicating that the agent has reached 
 
 
 
-`derections(int i)` : This method returns a string representation of the action taken by the agent. 
+`derections(int i)` : This method returns a string representation of the action taken by the QClass. 
 It takes an integer argument that represents the index of the action in the actions array, and returns
 a string that corresponds to the direction of the action.
 
@@ -248,7 +248,7 @@ a string that corresponds to the direction of the action.
 ```
 
 
-`resetState()` : This method sets the agent's position to the starting position. It sets the values of the 
+`resetState()` : This method sets the QClass's position to the starting position. It sets the values of the 
 stateI and stateJ variables to 0.
 ```java
    private void resetState(){
@@ -315,7 +315,7 @@ In recent years, researchers have made several advancements to enhance the perfo
 
 - Deep Q-Networks (DQN): Combining Q-Learning with deep neural networks to handle high-dimensional state spaces and improve learning efficiency.
 - Double Q-Learning: Addressing overestimation bias in Q-Learning by decoupling action selection and evaluation.
-- Prioritized Experience Replay: Prioritizing important transitions in the agent's memory for more efficient learning.
+- Prioritized Experience Replay: Prioritizing important transitions in the QClass's memory for more efficient learning.
 - Distributed Q-Learning: Parallelizing Q-Learning across multiple agents or computing resources for faster convergence and scalability.
 These advancements have pushed the boundaries of Q-Learning and enabled its successful application to even more complex problems.
 

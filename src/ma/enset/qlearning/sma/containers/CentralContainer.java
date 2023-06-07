@@ -12,7 +12,7 @@ import ma.enset.qlearning.sma.helpers.QLUtils;
 
 import static java.lang.Thread.sleep;
 
-public class SimpleContainer {
+public class CentralContainer {
     public static void main(String[] args) throws StaleProxyException, InterruptedException {
         Runtime runtime = Runtime.instance();
         ProfileImpl profile = new ProfileImpl();
@@ -20,12 +20,7 @@ public class SimpleContainer {
         AgentContainer agentContainer = runtime.createAgentContainer(profile);
 
 
-        for (int i = 0; i < QLUtils.AGENTS_NUMBER; i++) {
-            AgentController mainAgent = agentContainer.createNewAgent("Q" + i, QLearningAgent.class.getName(), new Object[]{});
-            mainAgent.start();
-            sleep(3000);
-        }
-
+        AgentController centralAgent = agentContainer.createNewAgent("CentralAgent", CentralAgent.class.getName(), new Object[]{});
+        centralAgent.start();
     }
 }
-

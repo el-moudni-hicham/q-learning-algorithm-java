@@ -2,25 +2,25 @@ package ma.enset.qlearning.sma.agents;
 
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
+import jade.domain.DFService;
+import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
+import jade.domain.FIPAException;
+import jade.lang.acl.ACLMessage;
 
 import java.util.Arrays;
 import java.util.Random;
 
+import static ma.enset.qlearning.sma.helpers.QLUtils.*;
+
 public class QLearningAgent extends Agent{
-
-    // Q Learning Utils
-    private final double ALPHA = 0.1;
-    private final double GAMMA = 0.9;
-    private final double EPS = 0.4;
-    private final int MAX_EPOCH = 200000;
-    private final int GRID_SIZE = 6;
-    private final int ACTIONS_SIZE = 4;
-
     private int[][] grid;
     private double[][] qTable = new double[GRID_SIZE*GRID_SIZE][ACTIONS_SIZE];
     private int[][] actions;
     private int stateI;
     private int stateJ;
+
+    int steps = 0;
 
     public void setup() {
         actions = new int[][]{
@@ -31,12 +31,12 @@ public class QLearningAgent extends Agent{
         };
 
         grid = new int[][]{
-                { 0 , 0 , 0 , -1 , 0 , 0},
-                {-1 , 0 ,  0 , 0 , -1 , 0},
-                {0  , 0 , -1 , 0 , 0 , -1},
-                {0  , -1 ,  1 , -1 , 0 , 0},
-                {0  , 0 ,  0 , 0 , -1 , 0},
-                {-1  , 0 ,  -1 , 0 , 0 , 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, -1, -1, 0, 0},
+                {0, 0, 0 , 0, 0, 0},
+                {-1, 0, 0, 0, 0, -1},
+                {0, 0, -1, -1, 0, 0},
+                {0, 0, 1, 0, 0, 0}
         };
 
         addBehaviour(new Behaviour() {
@@ -59,13 +59,17 @@ public class QLearningAgent extends Agent{
                         // Bellman equation
                         qTable[currentState][act] = qTable[currentState][act] + ALPHA * (grid[stateI][stateJ] + GAMMA * qTable[nextState][nextBestAct] - qTable[currentState][act]);
 
-                        it++;
+                        steps++;
                     }
+                    it++;
                 }
-                showResult();
+                showQTable();
+                showRoadToTarget();
+                showSteps();
             }
 
             public boolean done() {
+                sendAgentInfo();
                 return true;
             }
         });
@@ -73,16 +77,20 @@ public class QLearningAgent extends Agent{
 
     }
 
-    public void showResult(){
+    public void showQTable(){
         System.out.println("---------------- Q Table ----------------");
         for (double[] line:qTable) {
             System.out.println(Arrays.toString(line));
         }
+    }
 
+    public void showRoadToTarget(){
         resetState();
         System.out.println("-------- Agent Road To Target ---------");
 
         int i = 0;
+
+
         while (!finished()){
             int act = chooseAction(0);
             System.out.println("state : " + (stateI * GRID_SIZE + stateJ) + " -> action : " + derections(act) + "("+act+")");
@@ -91,9 +99,11 @@ public class QLearningAgent extends Agent{
         }
 
         System.out.println("final state : " + (stateI * GRID_SIZE + stateJ));
-        System.out.println("transactions number : " + i);
     }
 
+    public void showSteps(){
+        System.out.println("Total steps of agent in all epochs : " + steps + " step");
+    }
     public boolean finished(){
         return grid[stateI][stateJ] == 1;
     }
@@ -138,15 +148,23 @@ public class QLearningAgent extends Agent{
         return stateI*GRID_SIZE + stateJ;
     }
 
-    public int[][] getGrid() {
-        return grid;
+    public int getSteps() {
+        return steps;
     }
 
-    public int getStateI() {
-        return stateI;
-    }
-
-    public int getStateJ() {
-        return stateJ;
+    public void sendAgentInfo(){
+        DFAgentDescription dfAgentDescription=new DFAgentDescription();
+        ServiceDescription serviceDescription=new ServiceDescription();
+        serviceDescription.setType("ql");
+        dfAgentDescription.addServices(serviceDescription);
+        try {
+            DFAgentDescription[] masterDescription = DFService.search(this, dfAgentDescription);
+            ACLMessage aclMessage = new ACLMessage();
+            aclMessage.addReceiver(masterDescription[0].getName());
+            aclMessage.setContent(String.valueOf(getSteps()));
+            send(aclMessage);
+        } catch (FIPAException e) {
+            e.printStackTrace();
+        }
     }
 }
